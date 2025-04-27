@@ -1,1 +1,220 @@
+<!doctype html>
+<html lang="en">
 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PPOP Rise! – Pinoy Pop Gallery</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+
+  <script>
+    function ClickIn() {
+      var btn = document.getElementById("triviaBtn");
+      btn.style.backgroundColor = "#5FA051";
+      btn.style.color = "#FFFFFF";
+      btn.classList.add("shadow");
+    }
+
+    function ClickOut() {
+      var btn = document.getElementById("triviaBtn");
+      btn.style.backgroundColor = "#C1DFBB";
+      btn.style.color = "#2C3E50";
+      btn.classList.remove("shadow");
+    }
+
+    function showFooter() {
+      document.getElementById("footer").style.display = "block";
+      document.getElementById("footerShow").style.display = "none";
+    }
+
+    function hideFooter() {
+      document.getElementById("footer").style.display = "none";
+      document.getElementById("footerShow").style.display = "block";
+    }
+
+    function toggleInfo() {
+      var info = document.getElementById("extraInfo");
+      info.classList.toggle("collapse");
+    }
+
+    function showModal(name, title, imageSrc, longDesc, company, debut) {
+      document.getElementById('modalGroupName').innerText = name;
+      document.getElementById('modalGroupTitle').innerText = title;
+      document.getElementById('modalImage').src = imageSrc;
+      document.getElementById('modalInformation').innerHTML = `
+        <p>${longDesc}</p>
+        <hr>
+        <p><strong>Company:</strong> ${company}</p>
+        <p><strong>Debut Year:</strong> ${debut}</p>
+      `;
+      var myModal = new bootstrap.Modal(document.getElementById('groupModal'));
+      myModal.show();
+    }
+  </script>
+</head>
+
+<body style="background-color: #D4EAD0; margin: 0; padding: 0;">
+
+  <div class="position-relative text-white" style="height: 420px; background: url('ppop.webp') center/cover no-repeat;">
+    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: linear-gradient(to right, rgba(95, 160, 81, 0.85), rgba(44, 62, 80, 0.85)); z-index: 1;"></div>
+    <div class="position-relative z-2 d-flex flex-column justify-content-center align-items-center h-100 text-center px-3">
+      <h1 class="fw-bold display-3" style="text-shadow: 3px 3px 10px rgba(0,0,0,0.8); letter-spacing: 2px;">
+        <span style="color: #FDFEFE;">THIS.</span> <span style="color: #C1DFBB;">IS.</span> <span style="color: #5FA051;">P-POP</span>
+      </h1>
+      <p class="mt-3 fs-5" style="max-width: 720px; color: #FDFEFE;">
+        Not just music. Not just visuals. This is a movement. A vibe. A culture. P-pop is rising—and you’re gonna wanna be here for it.
+      </p>
+    </div>
+  </div>
+
+  <div class="container my-4">
+    <div class="text-center mb-4">
+      <h3 class="fw-bold" style="color: #5FA051;">Meet the Groups!</h3>
+      <p class="text-muted">Tap a group to discover more about them.</p>
+    </div>
+    <div class="row" id="container-row"></div>
+  </div>
+
+  <div class="container-fluid mt-5 py-3" style="background-color: #8BC081; color: #2C3E50;">
+    <div class="row">
+      <div class="col text-center">
+        <div class="h3 mb-4 fw-bold">Want to learn more about PPOP?</div>
+        <div onmouseover="ClickIn()" onmouseleave="ClickOut()" id="triviaBtn"
+          class="card p-3 my-2 rounded-5 mx-auto text-center pop-btn"
+          style="cursor:pointer; background-color: #C1DFBB; color: #2C3E50; max-width: 250px;" onclick="toggleInfo()">
+          🎶 Find Out!
+        </div>
+        <div id="extraInfo" class="mt-4 collapse">
+          <div class="card p-4 rounded-4 shadow" style="background-color: #C1DFBB; color: #2C3E50;">
+            <p class="mb-2">
+              <b>PPOP</b> (Pinoy Pop) is the Philippines’ answer to the global pop phenomenon! It blends world-class
+              music, powerful choreography, stunning visuals, and the heart of Filipino culture. 🌏🎤
+            </p>
+            <p>
+              Thanks to passionate fans and hardworking groups, PPOP is rising higher than ever before—showing the world
+              the true power of OPM (Original Pilipino Music)!
+            </p>
+          </div>
+          
+        </div>
+        <a href="../index.html" class="btn btn-sm text-dark fw-bold m-4 rounded" style="background-color: #D4EAD0;">Back to Main Site</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid p-2" id="footerShow" style="background-color: #5FA051; color: #2C3E50;">
+    <div class="row  text-center m-0">
+      <div class="col-12 p-2">
+        <div onclick="showFooter()" style="color: #FFFFFF; cursor: pointer;">Show Footer</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid p-4" id="footer" style="background-color: #5FA051; color: #2C3E50; display: none;">
+    <div class="row">
+      <div class="col text-center">
+        <div class="h4 fw-bold">PPOP Rise! Official</div>
+        <p>Follow your favorite groups, support Filipino talent, and keep the PPOP passion alive!</p>
+        <div class="d-flex justify-content-center gap-3 mb-3">
+          <a href="https://web.facebook.com/PPOPCONVENTION" class="text-white"><i class="fab fa-facebook fa-lg"></i></a>
+          <a href="https://x.com/PPOPCONVENTION" class="text-white"><i class="fab fa-twitter fa-lg"></i></a>
+          <a href="https://www.instagram.com/ppopconvention" class="text-white"><i class="fab fa-instagram fa-lg"></i></a>
+          <a href="https://www.youtube.com/@ppopcon" class="text-white"><i class="fab fa-youtube fa-lg"></i></a>
+        </div>
+        <small class="text-light">© 2025 PPOP Rise! All rights reserved. | Jodiel Mhae Mores</small>
+        <div onclick="hideFooter()" class="mt-3" style="color: #FFFFFF; cursor: pointer;">Hide Footer</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="groupModal" tabindex="-1" aria-labelledby="groupModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4">
+        <div class="modal-header" style="background-color: #5FA051; color: white;">
+          <h5 class="modal-title fw-bold" id="modalGroupName">Group Name</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            style="background-color: white;"></button>
+        </div>
+        <div class="modal-body text-center">
+          <img id="modalImage" src="" alt="" class="img-fluid rounded mb-3" style="max-height: 200px;">
+          <h6 id="modalGroupTitle" class="mb-2" style="color:#5FA051;">Group Title</h6>
+          <div id="modalInformation" class="text-start" style="color:#2C3E50; font-size: 0.95rem;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    var names = ["SB19", "BINI", "BGYO", "G22", "ALAMAT", "KAIA", "VXON", "MNL48", "1st.One", "YARA",
+      "PLUUS", "AJAA", "YGIG", "CLOUD7", "DIONE", "PHP", "CALISTA", "BILIB", "PIX!E", "1621BC"];
+
+    var pictures = ["sb.jpg", "bini.jpg", "bgyo.jpeg", "g22.jpeg", "alamat.jpg", "kaia.jpeg", "vxon.jpeg",
+      "mnl48.jpg", "1stOne.jpeg", "yara.webp", "Pluus.jpg", "ajaa.jpeg", "ygig.jpeg", "cloud7.png",
+      "dione.jpg", "php.jpeg", "calista.jpeg", "bilib.jpeg", "pixie.jpeg", "1621bc.jpeg"];
+
+    var grouptitle = ["PPOP Kings", "Nation’s Girl Group", "The ACEs of PPOP", "Female Alphas", "Multilingual Kings",
+      "Fearless Femmes", "Monster Rookies", "Globalized Idol Group", "Stage Powerhouses", "Promising Queens",
+      "Next-Gen Idols", "Rookie Heartthrobs", "Girl Power Rising", "Fresh Beats", "New Era Queens",
+      "Passionate Hitmakers", "All-Out Performers", "Youthful Energy", "Charming Innovators", "Future Legends"];
+
+    var longDescriptions = [
+      "SB19 is the first Filipino group trained under a Korean entertainment company. They popularized P-pop globally with record-breaking achievements and high-caliber performances.",
+      "BINI is a girl group known for promoting youth empowerment through diverse concepts, impressive vocals, and socially relevant music.",
+      "BGYO is dubbed as the Aces of P-pop, recognized for inspirational music, intricate choreography, and sharp visuals.",
+      "G22, the Female Alphas of P-pop, bring fierce energy, powerful vocals, and an edgy girl-crush concept to the scene.",
+      "ALAMAT stands out by integrating various Philippine languages and cultural elements, promoting Filipino identity through music and visuals.",
+      "KAIA, BINI’s sister group, showcases strong vocals, bold concepts, and an empowering image of the modern Filipina.",
+      "VXON is a dynamic boy group praised for their strong stage presence, refined vocals, and cinematic storytelling through music.",
+      "MNL48 is the first Filipino idol group based on Japan’s AKB48, pioneering the idol concept in the Philippines.",
+      "1st.One impresses with intense performances and emotionally charged songs, blending K-pop precision with heartfelt Filipino storytelling.",
+      "YARA captivates with youthful, fresh concepts and synchronized performances, representing the next wave of Filipina talent.",
+      "PLUUS is a rising boy group known for their vocal prowess, stunning visuals, and energetic performances.",
+      "AJAA offers a youthful spirit, catchy music, and lively stages, symbolizing the next generation of P-pop idols.",
+      "YGIG exudes girl power with strong performances and music that empowers and uplifts young women.",
+      "CLOUD7 introduces innovative sounds and boundary-pushing performances, appealing to a wide range of music fans.",
+      "DIONE enchants audiences with elegant concepts, harmonious vocals, and sophisticated stagecraft.",
+      "PHP (Press Hit Play) showcases their versatility with heartfelt lyrics, powerful vocals, and dynamic performances.",
+      "CALISTA stands out with genre-defying music, vibrant visuals, and powerful stage charisma.",
+      "BILIB promotes positivity and energy, combining fun, catchy tracks with synchronized dance performances.",
+      "PIX!E captures attention with their creative, youthful vibe and distinct musical identity.",
+      "1621BC pioneers a fresh, evolving sound in P-pop, blending creativity with a strong commitment to their artistry."
+    ];
+
+
+    var companyNames = ["1Z Entertainment", "Star Music", "Star Music", "Cornerstone Entertainment",
+      "Viva Records", "ShowBT Philippines", "Cornerstone Entertainment", "Hallohallo Entertainment",
+      "FirstOne Entertainment", "Sony Music Philippines", "SBTown", "Cornerstone Entertainment",
+      "SBTown", "PowerHouse Entertainment", "FirstOne Entertainment", "Evosound Original",
+      "Merlion Entertainment", "AQ Prime Music", "DreamCloud Media", "PPL Entertainment"];
+
+    var debutYears = ["2018", "2020", "2021", "2022", "2021", "2022", "2022", "2018", "2020", "2022",
+      "2023", "2023", "2023", "2024", "2022", "2023", "2022", "2024", "2023", "2024"];
+
+    var rowElement = document.getElementById("container-row");
+
+    for (var i = 0; i < names.length; i++) {
+      rowElement.innerHTML += `
+        <div class="col-6 col-sm-6 col-md-4 col-lg-3">
+          <div class="card my-3 shadow rounded-5 overflow-hidden"
+            style="transition: 0.3s ease; border: 3px solid #699361; cursor: pointer;"
+            onmouseover="this.style.transform='scale(1.08)'; this.style.boxShadow='0 0 20px #B29DFF';"
+            onmouseleave="this.style.transform='scale(1)'; this.style.boxShadow='0 0 25px 8px #B29DFF';"
+            onclick="showModal('${names[i]}', '${grouptitle[i]}', '${pictures[i]}', '${longDescriptions[i]}', '${companyNames[i]}', '${debutYears[i]}')">
+            <img src="${pictures[i]}" class="card-img-top" alt="${names[i]}" style="height: 300px; object-fit: cover;">
+            <div class="card-body text-center">
+              <h5 class="card-title fw-bold">${names[i]}</h5>
+              <p class="card-text">${grouptitle[i]}</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
