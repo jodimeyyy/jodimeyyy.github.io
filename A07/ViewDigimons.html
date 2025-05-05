@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>View Digimon</title>
+    <link rel="icon" href="../A04/logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+</head>
+
+<body style="font-family: Arial, sans-serif;" id="main-body">
+    <nav class="navbar navbar-expand-lg" style="background-color: #5FA051;">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="Digimon.html" style="font-size: 1.5rem;">
+                <i class="bi bi-house-door-fill"></i>
+            </a>
+            <div class="ms-auto">
+                <img src="https://static.wikia.nocookie.net/logopedia/images/d/db/Digimon_Logo_Vector.svg/revision/latest?cb=20190225192804"
+                    alt="Digimon Logo" width="100" />
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center" id="digimon-container"></div>
+    </div>
+
+    <script>
+        const container = document.getElementById("digimon-container");
+        const levelColors = {
+            "In Training": "#AED6F1",
+            "Training": "#E6B0AA",
+            "Rookie": "#F7DC6F",
+            "Champion": "#F1948A",
+            "Ultimate": "#85C1E9",
+            "Mega": "#58D68D",
+            "Armor": "#BB8FCE",
+            "Fresh": "#FAD7A0"
+        };
+
+        function getURLParameter(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name);
+        }
+
+        function displayDigimon(d) {
+            const borderColor = levelColors[d.level] || "#699361";
+            container.innerHTML = `
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card my-4 rounded-4 shadow text-center"
+            style="border: 4px solid ${borderColor}; background: white;">
+            <img src="${d.img}" alt="${d.name}" class="card-img-top mx-auto d-block mt-4"
+              style="width: 180px; height: 180px; object-fit: contain;" />
+            <div class="card-body">
+              <h3 class="fw-bold">${d.name}</h3>
+              <p class="lead">${d.level}</p>
+            </div>
+          </div>
+        </div>
+      `;
+        }
+
+        async function loadAndDisplay() {
+            const nameParam = getURLParameter("name");
+            if (!nameParam) {
+                container.innerHTML = `<div class="text-center mt-5"><h4>No Digimon specified in URL.</h4></div>`;
+                return;
+            }
+
+            try {
+                const res = await fetch("https://digimon-api.vercel.app/api/digimon");
+                const data = await res.json();
+                const found = data.find(d => d.name.toLowerCase() === nameParam.toLowerCase());
+
+                if (found) {
+                    const body = document.getElementById("main-body");
+                    body.style.backgroundColor = levelColors[found.level] || "#D4EAD0";
+
+                    displayDigimon(found);
+                } else {
+                    container.innerHTML = `<div class="text-center mt-5"><h4>No Digimon found with name "${nameParam}".</h4></div>`;
+                }
+            } catch (err) {
+                container.innerHTML = `<div class="text-center mt-5"><h4>Error fetching Digimon data.</h4></div>`;
+            }
+        }
+
+        loadAndDisplay();
+    </script>
+</body>
+
+</html>
