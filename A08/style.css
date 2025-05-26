@@ -1,0 +1,16 @@
+/*PUT YOUR CUSTOM STYLE HERE*/
+
+/*!This style is important, do not override!*/
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.keyart_layer {
+  background-size: 100% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 1000px; /* or as needed */
+  position: absolute;
+}
